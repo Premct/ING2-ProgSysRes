@@ -85,8 +85,7 @@ void ex5() {
 
     for (int i = 0; i < mat_len; ++i) {
         pid_t process = fork();
-
-        int exit_status = (matrix[i] * matrix[i]);
+        int exit_status;
 
         switch (process) {
             case -1:
@@ -94,11 +93,11 @@ void ex5() {
                 break;
             case 0:
                 printf("%s%s%s%i%s\n", GREEN, "Child process ", BLUE, getpid(), RESET);
-                exit(exit_status);
+                exit(matrix[i] * matrix[i]);
             default:
-                WEXITSTATUS(exit_status);
+                waitpid(process, &exit_status, WUNTRACED);
                 printf("%s%s%s%i%s\n", RED, "Parent process ", BLUE, getpid(), RESET);
-                printf("%s%i\n", "Child exited with status code: ", exit_status);
+                printf("%s%i\n", "Child exited with status code: ", WEXITSTATUS(exit_status));
                 break;
         }
     }
