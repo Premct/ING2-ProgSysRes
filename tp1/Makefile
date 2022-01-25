@@ -8,6 +8,7 @@ LIBDIR = lib/
 # COMPILATION TOOLS
 CC = gcc
 FLAGS = -Wall -lm
+CLEAN = clean
 
 # ALL FILES
 PROG = $(BINDIR)tp1
@@ -29,6 +30,7 @@ MAKE = make
 
 # COMPILATION
 all: $(PROG)
+	$(MAKE) $(CLEAN)
 $(PROG) : $(OBJ) $(HEAD)
 	$(CC) $^ -o $(PROG)
 	$(DOXYGEN) $(DOXYFILE)
