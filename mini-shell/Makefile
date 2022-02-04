@@ -22,7 +22,7 @@ ARC = monchecour-tp1.tgz
 #COMMANDS
 RM = rm -r
 TGZ = tar -czvf
-CP = cp
+CP = cp -r
 DOXYGEN = doxygen
 MKDIR = mkdir -p
 TOUCH = touch
@@ -39,6 +39,7 @@ $(BINDIR)%.o: $(SRCDIR)%.c
 
 # SAVE CURRENT VERSION
 save: $(SRC) $(HEAD)
+	$(MKDIR) $(SAVEDIR)
 	$(CP) $^ $(SAVEDIR)
 
 # RESTORE VERSION
