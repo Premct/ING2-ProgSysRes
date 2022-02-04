@@ -24,10 +24,20 @@ int main(int argc, char* argv[]) {
     char **array = NULL;
     char **final = NULL;
 
-    getInput(&input);
-    int wc = wordCount(input);
+    do {
+        getInput(&input);
+        int wc = wordCount(input);
+        int hasArgs = wc > 1;
 
-//    while(strcmp(input, "exit") != 0) {
+        if (hasArgs) {
+            array = splitString(&input, wc);
+            final = prepareArgsArray(array, wc);
+
+            if (strcmp(final[0], "cd") == 0) {
+                chdir(final[1]);
+            }
+        }
+
         pid_t f = fork();
 
         switch (f) {
@@ -35,32 +45,19 @@ int main(int argc, char* argv[]) {
                 printf("%s", "Fork error.");
                 break;
             case 0:
-                printf("Input: %s\n", input);
-                printf("wordCount: %d\n", wc);
-
-                if (wc > 1) {
-                    array = splitString(&input, wc);
-                    final = prepareArgsArray(array, wc);
+                if (hasArgs) {
                     execvp(buildCmdPath(final[0]), final);
                 } else {
+                    printf("input: %s\n", input);
                     execl(buildCmdPath(input),input, NULL);
                 }
-
-                getInput(&input);
-                wc = wordCount(input);
                 exit(1);
             default:
                 wait(&status);
                 break;
         }
 
-        getInput(&input);
-        wc = wordCount(input);
-//    }
-
-
-
-
+    } while(strcmp(input, "exit") != 0);
 
     free(input);
 }
