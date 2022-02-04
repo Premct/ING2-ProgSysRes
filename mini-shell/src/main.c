@@ -25,6 +25,7 @@ int main(int argc, char* argv[]) {
     char **final = NULL;
 
     do {
+        printf("%s%s", PS, " ");
         getInput(&input);
         int wc = wordCount(input);
         int hasArgs = wc > 1;
