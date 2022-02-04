@@ -12,8 +12,7 @@
 #include <unistd.h>
 
 #define BUFF_SIZE 1024
-#define PS "~> "
-#define BINPTH = "/bin/"
+#define PS "-> "
 
 void getInput(char **input);
 
