@@ -17,7 +17,7 @@ HEAD = $(wildcard $(LIBDIR)*.h)
 MF = Makefile
 DOXYFILE = Doxyfile
 README = README.md
-ARC = monchecour-tp1.tgz
+ARC = monchecour-ex9.tgz
 
 #COMMANDS
 RM = rm -r
@@ -47,7 +47,7 @@ restore:
 	cp $(SAVEDIR)* $(SRCDIR)
 
 # PACK SOURCES
-package: $(BINDIR) $(SRCDIR) $(DOCDIR) $(MF) $(DOXYFILE) $(README)
+package: $(SRCDIR) $(LIBDIR) $(MF) $(DOXYFILE) $(README)
 	$(RM) $(PROG) $(OBJ) $(DOCDIR)*
 	$(TGZ) $(ARC) $^
 
