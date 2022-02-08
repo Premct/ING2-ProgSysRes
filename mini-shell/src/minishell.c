@@ -42,10 +42,8 @@ char **splitString(char **input, int length) {
 }
 
 char **prepareArgsArray(char **array, int length) {
-    printf("length: %d \n", length);
     char **final = malloc((length + 1) * sizeof(char *));
     for (int i = 0; i < length; ++i) {
-//        printf("array[%d] =  %s\n", i, array[i]);
         final[i] = array[i];
     }
 
