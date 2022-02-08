@@ -22,4 +22,6 @@ char **splitString(char **input, int length);
 
 char **prepareArgsArray(char **array, int length);
 
-char *buildCmdPath(char *cmd);
+char *buildCmdPath(char *cmd, char *path);
+
+void execCmd(char *cmd, char **args, int option);

@@ -52,10 +52,30 @@ char **prepareArgsArray(char **array, int length) {
     return (final);
 }
 
-char *buildCmdPath(char *cmd) {
+char *buildCmdPath(char *cmd, char* path) {
     char *final = malloc(BUFF_SIZE * sizeof(char));
-    strcat(final, "/bin/");
+    strcat(final, path);
     strcat(final, cmd);
 
-    return(final);
+    return (final);
+}
+
+void execCmd(char *cmd, char** args, int option) {
+    char *bin = malloc(BUFF_SIZE * sizeof(char));
+    char *usr_bin = malloc(BUFF_SIZE * sizeof(char));
+
+    bin = buildCmdPath(cmd, "/bin/");
+    usr_bin = buildCmdPath(cmd, "/usr/bin/");
+
+    if (option == 0) {
+        if (execl(bin, cmd, NULL) == -1) {
+            execl(usr_bin, cmd, NULL);
+        }
+    } else {
+        if (execvp(bin, args) == -1) {
+            execvp(usr_bin, args);
+        }
+    }
+
+
 }
