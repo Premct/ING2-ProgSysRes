@@ -47,10 +47,9 @@ int main(int argc, char* argv[]) {
                 break;
             case 0:
                 if (hasArgs) {
-                    execvp(buildCmdPath(final[0]), final);
+                    execCmd(final[0], final, 1);
                 } else {
-                    printf("input: %s\n", input);
-                    execl(buildCmdPath(input),input, NULL);
+                    execCmd(input, NULL, 0);
                 }
                 exit(1);
             default:
@@ -61,4 +60,5 @@ int main(int argc, char* argv[]) {
     } while(strcmp(input, "exit") != 0);
 
     free(input);
+    free(final);
 }
