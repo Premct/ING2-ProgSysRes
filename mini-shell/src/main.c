@@ -20,12 +20,18 @@
  */
 int main(int argc, char* argv[]) {
     int status;
+    char hostname[BUFF_SIZE];
     char *input = malloc(BUFF_SIZE * sizeof(char));
     char **array = NULL;
     char **final = NULL;
+    char *color_auto[] = {"ls", "--color=auto", NULL};
+
+    system("clear");
 
     do {
-        printf("%s%s", PS, " ");
+        gethostname(&hostname, BUFF_SIZE);
+        prompt(hostname);
+
         getInput(&input);
         int wc = wordCount(input);
         int hasArgs = wc > 1;
@@ -49,6 +55,7 @@ int main(int argc, char* argv[]) {
                 if (hasArgs) {
                     execCmd(final[0], final, 1);
                 } else {
+                    if (strcmp(input, "ls") == 0) { execvp("/bin/ls", color_auto); }
                     execCmd(input, NULL, 0);
                 }
                 exit(1);

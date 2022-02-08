@@ -10,9 +10,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/utsname.h>
 
 #define BUFF_SIZE 1024
-#define PS "-> "
+#define PS "->"
 
 /**
  * Gets input form command-line
@@ -58,3 +59,9 @@ char *buildCmdPath(char *cmd, char *path);
  * @param option An integer, 0 if there are no arguments, 1 otherwise
  */
 void execCmd(char *cmd, char **args, int option);
+
+/**
+ * Prints a prompt
+ * @param option A string, as something to print to the prompt
+ */
+void prompt(char* option);

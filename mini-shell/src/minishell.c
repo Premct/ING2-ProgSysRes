@@ -61,11 +61,9 @@ char *buildCmdPath(char *cmd, char* path) {
 }
 
 void execCmd(char *cmd, char** args, int option) {
-    char *bin = malloc(BUFF_SIZE * sizeof(char));
-    char *usr_bin = malloc(BUFF_SIZE * sizeof(char));
 
-    bin = buildCmdPath(cmd, "/bin/");
-    usr_bin = buildCmdPath(cmd, "/usr/bin/");
+    char *bin = buildCmdPath(cmd, "/bin/");
+    char *usr_bin = buildCmdPath(cmd, "/usr/bin/");
 
     if (option == 0) {
         if (execl(bin, cmd, NULL) == -1) {
@@ -76,6 +74,10 @@ void execCmd(char *cmd, char** args, int option) {
             execvp(usr_bin, args);
         }
     }
+}
 
-
+void prompt(char* option) {
+    printf("%s", "\033[1;90m");
+    printf("%s%s%s%s", option, " ", PS, " ");
+    printf("%s", "\033[0m");
 }
