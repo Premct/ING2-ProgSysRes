@@ -21,6 +21,7 @@
 int main(int argc, char* argv[]) {
     int status;
     char hostname[BUFF_SIZE];
+    char cwd[BUFF_SIZE];
     char *input = malloc(BUFF_SIZE * sizeof(char));
     char **array = NULL;
     char **final = NULL;
@@ -30,7 +31,8 @@ int main(int argc, char* argv[]) {
 
     do {
         gethostname(&hostname, BUFF_SIZE);
-        prompt(hostname);
+        getcwd(&cwd, BUFF_SIZE);
+        prompt(hostname, cwd);
 
         getInput(&input);
         int wc = wordCount(input);
