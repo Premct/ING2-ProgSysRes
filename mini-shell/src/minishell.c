@@ -74,8 +74,13 @@ void execCmd(char *cmd, char** args, int option) {
     }
 }
 
-void prompt(char* option) {
+void prompt(char* hostname, char* cwd) {
     printf("%s", "\033[1;90m");
-    printf("%s%s%s%s", option, " ", PS, " ");
+    printf("%s", hostname);
     printf("%s", "\033[0m");
+    printf("%s", "$");
+    printf("%s", "\033[1;34m");
+    printf("%s%s", cwd, " ");
+    printf("%s", "\033[0m");
+    printf("%s%s", PS, " ");
 }

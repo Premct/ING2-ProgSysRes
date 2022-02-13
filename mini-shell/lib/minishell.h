@@ -62,6 +62,7 @@ void execCmd(char *cmd, char **args, int option);
 
 /**
  * Prints a prompt
- * @param option A string, as something to print to the prompt
+ * @param hostname A string, as hostname
+ * @param hostname A string, as current working directory
  */
-void prompt(char* option);
+void prompt(char* hostname, char* cwd);
