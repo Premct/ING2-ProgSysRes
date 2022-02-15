@@ -5,7 +5,7 @@
 #include <wait.h>
 #include "../lib/exercises.h"
 
-int TRIES;
+int TRIES = 0;
 int HASTOINPUT = 1;
 
 void sigHandler(int signal) {
@@ -142,10 +142,9 @@ void exerciseThree() {
 
     printf("%s\n", "What's your question?");
 
-    TRIES = 1;
     while (HASTOINPUT && TRIES <= 3) {
-        HASTOINPUT = 0;
         alarm(5);
+        HASTOINPUT = 0;
         fgets(question, 1024, stdin);
     }
 
