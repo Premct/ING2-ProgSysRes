@@ -6,7 +6,7 @@
 #include "../lib/exercises.h"
 
 int TRIES;
-int HASTOINPUT;
+int HASTOINPUT = 1;
 
 void sigHandler(int signal) {
     printf("%d%s%d\n", getpid(), " received signal: ", signal);
@@ -142,7 +142,7 @@ void exerciseThree() {
 
     printf("%s\n", "What's your question?");
 
-    TRIES = 0;
+    TRIES = 1;
     while (HASTOINPUT && TRIES <= 3) {
         HASTOINPUT = 0;
         alarm(5);
