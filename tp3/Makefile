@@ -10,7 +10,7 @@ CC = gcc
 FLAGS = -Wall -lm
 
 # ALL FILES
-PROG = $(BINDIR)tp1
+PROG = $(BINDIR)tp3
 SRC = $(wildcard $(SRCDIR)*.c)
 OBJ = $(subst $(SRCDIR), $(BINDIR), $(SRC:.c=.o))
 HEAD = $(wildcard $(LIBDIR)*.h)
